@@ -1,5 +1,6 @@
-#include <SDL2/SDL.h>
 #include "DDA.hpp"
+#include "BLA.hpp"
+#include <SDL2/SDL.h>
 
 const int SCREEN_WIDTH = 960;
 const int SCREEN_HEIGHT = 720;
@@ -32,13 +33,15 @@ int main()
 
         SDL_SetRenderDrawColor(renderer, 25, 25, 25, 255);
         SDL_RenderClear(renderer);
+
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-
-        /* USER CODE BEGIN */
         DDA::drawLine(renderer, 0, 0, 960, 720);
-        /* USER CODE END */
 
+        SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); 
+        BLA::drawLine(renderer, 960, 0, 0, 720);
+        
         SDL_RenderPresent(renderer);
+
     }
 
     SDL_DestroyRenderer(renderer);
