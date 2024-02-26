@@ -1,10 +1,11 @@
 add_executable(graphics
-	# main.cpp
+	main.cpp
 	DDA.cpp
 	BLA.cpp
 	MCA.cpp
 	MEA.cpp
-	transform.cpp
+	vector2.cpp
+	rectangle.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})

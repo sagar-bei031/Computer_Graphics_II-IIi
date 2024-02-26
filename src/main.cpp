@@ -2,6 +2,7 @@
 #include "BLA.hpp"
 #include "MCA.hpp"
 #include "MEA.hpp"
+#include "rectangle.hpp"
 #include <SDL2/SDL.h>
 
 const int SCREEN_WIDTH = 960;
@@ -37,16 +38,32 @@ int main()
         SDL_RenderClear(renderer);
 
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-        DDA::drawLine(renderer, 0, 0, 960, 720);
+        DDA::drawLine(renderer, 800, 0, 960, 720);
 
         SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-        BLA::drawLine(renderer, 960, 0, 0, 720); /* BLA is more efficient and accurate. */
+        BLA::drawLine(renderer, 800, 720, 960, 0); /* BLA is more efficient and accurate. */
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
-        MCA::drawCircle(renderer, 400, 400, 200);
+        MCA::drawCircle(renderer, 700, 400, 200);
 
         SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
-        MEA::drawEllipse(renderer, 600, 600, 200, 100);
+        MEA::drawEllipse(renderer, 600, 400, 200, 100);
+
+        Rectangle rec(50, 50, 200, 100, 0);
+        SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
+        rec.render(renderer);
+        
+        rec.scale(2, 2);
+        SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
+        rec.render(renderer);
+
+        rec.translate(0, 250);
+        SDL_SetRenderDrawColor(renderer, 100, 200, 0, 255);
+        rec.render(renderer);
+
+        rec.rotate(-M_PI_4);
+        SDL_SetRenderDrawColor(renderer, 0, 200, 100, 255);
+        rec.render(renderer);
 
         SDL_RenderPresent(renderer);
     }
