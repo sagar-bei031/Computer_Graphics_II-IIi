@@ -1,5 +1,6 @@
 #include "DDA.hpp"
 #include "BLA.hpp"
+#include "MCA.hpp"
 #include <SDL2/SDL.h>
 
 const int SCREEN_WIDTH = 960;
@@ -21,13 +22,13 @@ int main()
         {
             switch (event.type)
             {
-                case SDL_QUIT:
+            case SDL_QUIT:
+                running = false;
+                break;
+            case SDL_KEYDOWN:
+                if (event.key.keysym.sym == SDLK_ESCAPE)
                     running = false;
-                    break;
-                case SDL_KEYDOWN:
-                    if (event.key.keysym.sym == SDLK_ESCAPE)
-                        running = false;
-                    break;
+                break;
             }
         }
 
@@ -37,11 +38,13 @@ int main()
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
         DDA::drawLine(renderer, 0, 0, 960, 720);
 
-        SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255); 
-        BLA::drawLine(renderer, 960, 0, 0, 720);
-        
-        SDL_RenderPresent(renderer);
+        SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+        BLA::drawLine(renderer, 960, 0, 0, 720); /* BLA is more efficient and accurate. */
 
+        SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
+        MCA::drawCircle(renderer, 400, 400, 200);
+
+        SDL_RenderPresent(renderer);
     }
 
     SDL_DestroyRenderer(renderer);

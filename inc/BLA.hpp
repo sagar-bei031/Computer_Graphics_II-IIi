@@ -2,9 +2,10 @@
 
 #include <SDL2/SDL.h>
 
+/* Bresenham's Line Drawing Algorithm */
 namespace BLA
 {
-    void swap(int &a, int &b)
+    inline void swap(int &a, int &b)
     {
         int temp = a;
         a = b;
@@ -31,10 +32,10 @@ namespace BLA
 
         int p = 2 * dy - dx;
 
-        for (int i = 0; i <= dx; ++i)
-        {
-            SDL_RenderDrawPoint(renderer, x, y);
+        SDL_RenderDrawPoint(renderer, x, y);
 
+        for (int i = 0; i < dx; ++i)
+        {
             while (p > 0)
             {
                 y += sy;
@@ -43,6 +44,8 @@ namespace BLA
 
             x += sx;
             p += 2 * dy;
+
+            SDL_RenderDrawPoint(renderer, x, y);
         }
     }
 };
