@@ -10,30 +10,41 @@ void BLA::drawLine(SDL_Renderer *renderer, int x1, int y1, int x2, int y2)
 
     int x = x1;
     int y = y1;
-
-    if (dy > dx)
-    {
-        swap(dx, dy);
-        swap(sx, sy);
-        swap(x, y);
-    }
-
     int p = 2 * dy - dx;
 
     SDL_RenderDrawPoint(renderer, x, y);
 
-    for (int i = 0; i < dx; ++i)
+    if (dx > dy)
     {
-        while (p > 0)
+        while (x != x2)
         {
-            y += sy;
-            p -= 2 * dx;
+            if (p > 0)
+            {
+                y += sy;
+                p -= 2 * dx;
+            }
+
+            x += sx;
+            p += 2 * dy;
+
+            SDL_RenderDrawPoint(renderer, x, y);
         }
+    }
+    else
+    {
+        while (y != y2)
+        {
+            if (p > 0)
+            {
+                x += sx;
+                p -= 2 * dy;
+            }
+            
+            y += sy;
+            p += 2 * dx;
 
-        x += sx;
-        p += 2 * dy;
-
-        SDL_RenderDrawPoint(renderer, x, y);
+            SDL_RenderDrawPoint(renderer, x, y);
+        }
     }
 }
 
