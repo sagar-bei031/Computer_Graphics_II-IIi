@@ -1,6 +1,7 @@
 #include "DDA.hpp"
 #include "BLA.hpp"
 #include "MCA.hpp"
+#include "MEA.hpp"
 #include <SDL2/SDL.h>
 
 const int SCREEN_WIDTH = 960;
@@ -43,6 +44,9 @@ int main()
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
         MCA::drawCircle(renderer, 400, 400, 200);
+
+        SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
+        MEA::drawEllipse(renderer, 600, 600, 200, 100);
 
         SDL_RenderPresent(renderer);
     }

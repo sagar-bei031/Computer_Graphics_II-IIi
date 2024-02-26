@@ -18,7 +18,7 @@ void MCA::drawCircle(SDL_Renderer *renderer, int xc, int yc, int r)
         }
         else
         {
-            y--;
+            --y;
             p += 2 * (x - y) + 1;
         }
 
