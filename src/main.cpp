@@ -3,6 +3,7 @@
 #include "MCA.hpp"
 #include "MEA.hpp"
 #include "rectangle.hpp"
+#include "LineClipper.hpp"
 #include <SDL2/SDL.h>
 
 const int SCREEN_WIDTH = 960;
@@ -34,37 +35,66 @@ int main()
             }
         }
 
+        // Clear surface
         SDL_SetRenderDrawColor(renderer, 25, 25, 25, 255);
         SDL_RenderClear(renderer);
 
+        // Draw Line 1
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
         DDA::drawLine(renderer, 800, 0, 960, 720);
 
+        // Draw Line 2
         SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
         BLA::drawLine(renderer, 800, 720, 960, 0); /* BLA is more efficient and accurate. */
 
+        // Draw Circle
         SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
         MCA::drawCircle(renderer, 700, 400, 200);
 
+        // Draw Ellipse
         SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
         MEA::drawEllipse(renderer, 600, 400, 200, 100);
 
+        // Draw Rectangle
         Rectangle rec(50, 50, 200, 100, 0);
         SDL_SetRenderDrawColor(renderer, 255, 255, 0, 255);
         rec.render(renderer);
-        
+
+        // Scale Rectangle
         rec.scale(2, 2);
         SDL_SetRenderDrawColor(renderer, 0, 255, 255, 255);
         rec.render(renderer);
 
+        // Translate Rectangle
         rec.translate(0, 250);
         SDL_SetRenderDrawColor(renderer, 100, 200, 0, 255);
         rec.render(renderer);
 
+        // Rotate Rectangle
         rec.rotate(-M_PI_4);
         SDL_SetRenderDrawColor(renderer, 0, 200, 100, 255);
         rec.render(renderer);
 
+        int x0 = 0, y0 = 0, x1 = 960, y1 = 720;
+        int x_min = 100, x_max = 860, y_min = 100, y_max = 620;
+
+        // Draw original line to be clipped
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        SDL_RenderDrawLine(renderer, x0, y0, x1, y1);
+
+        // Drawing Clipping Box
+        SDL_SetRenderDrawColor(renderer, 100, 255, 100, 255);
+        SDL_Rect rr{x_min, y_min, x_max - x_min, y_max - y_min};
+        SDL_RenderDrawRect(renderer, &rr);
+
+        // Clip and Draw Line
+        if (clipLine(x0, y0, x1, y1, x_min, x_max, y_min, y_max))
+        {
+            SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
+            SDL_RenderDrawLine(renderer, x0, y0, x1, y1);
+        }
+
+        // Pull back buffer on to front buffer
         SDL_RenderPresent(renderer);
     }
 
