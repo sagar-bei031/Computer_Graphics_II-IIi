@@ -3,16 +3,19 @@ cmake_minimum_required(VERSION 3.5)
 # Project configuration
 project(graphics C CXX)
 
-# Set optimization flags for Release build
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    target_compile_options(my_target PRIVATE -O2)
-endif()
-
 # Set C and C++ standards
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
-# Compiler options
+# Compiler options for debug build
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} -g")
+
+# Compiler options for release build
+set(CMAKE_C_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O2")
+
+# Compiler options for warning flags
 set(CMAKE_C_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 
