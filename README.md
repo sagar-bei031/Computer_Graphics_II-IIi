@@ -10,6 +10,7 @@ Also, OpenGL code using GLUT are added.
 4. Mid-point Ellipse Drawing Algorithm
 5. 2D-Transformation (Scaling, Translation, Rotation)
 6. Cohen–Sutherland Line Clipping Algorithm
+7. Liang-Barsky Line Clipping Algorithm
 
 ## How to use it?
 I have provided files in `.hpp` and `.cpp` format. In order to use the algorithms and use the functions defined in these files in your own code. `example.cpp` is there as an `example file`. Also, `OpenGL` codes are inside `opengl` folder.
