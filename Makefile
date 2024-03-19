@@ -1,7 +1,7 @@
 # Tested on linux only (STM32CubeMX style)
 
 # Target
-TARGET = graphics
+TARGET = lab
 
 # Debug?
 DEBUG = 1
@@ -24,7 +24,7 @@ src/MEA.cpp \
 src/vector2.cpp  \
 src/rectangle.cpp \
 src/LineClipper.cpp \
-example.cpp
+lab.cpp
 
 # C Includes
 C_INC = \

@@ -13,9 +13,9 @@ Also, OpenGL code using GLUT are added.
 7. Liang-Barsky Line Clipping Algorithm
 
 ## How to use it?
-I have provided files in `.hpp` and `.cpp` format. In order to use the algorithms and use the functions defined in these files in your own code. `example.cpp` is there as an `example file`. Also, `OpenGL` codes are inside `opengl` folder.
+I have provided files in `.hpp` and `.cpp` format. In order to use the algorithms and use the functions defined in these files in your own code. `lab.cpp` is there as an `example code`. Also, `OpenGL` codes are inside `opengl` folder.
 
-## Build and Run example.cpp
+## Build and Run lab.cpp
 Using cmake:
 ```bash
 mkdir build # make build directory
@@ -29,12 +29,18 @@ Using Makefile (bash or powershell):
 make -j8 # build
 ./build/graphics # run
 ```
-**Executable file is located at `build/` and name of the file is `graphics`**
 
-## Build and Run OpenGl Examples
+<!-- Screen shot of lab.cpp --> 
+<img src="img/lab.png" alt="Lab" width="100%">
+
+## Build and Run OpenGL Examples
 ```bash
 cd opengl
 make -j8
 ./build/triangle
 ./build/cube
 ```
+
+<!-- Output Screenshots -->
+<img src="img/triangle.png" alt="Triangle" width="100%">
+<img src="img/cube.png" alt="Cube" width="100%">

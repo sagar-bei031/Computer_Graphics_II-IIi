@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
 # Project configuration
-project(graphics C CXX)
+project(lab C CXX)
 
 # Set C and C++ standards
 set(CMAKE_C_STANDARD 11)
@@ -23,7 +23,7 @@ find_package(SDL2 REQUIRED)
 
 include_directories(inc)
 
-add_executable(graphics
+add_executable(lab
 	src/DDA.cpp
 	src/BLA.cpp
 	src/MCA.cpp
@@ -31,7 +31,7 @@ add_executable(graphics
 	src/vector2.cpp
 	src/rectangle.cpp
 	src/LineClipper.cpp
-	example.cpp
+	lab.cpp
 )
 
 target_include_directories(graphics PRIVATE ${CMAKE_CURRENT_LIST_DIR})
