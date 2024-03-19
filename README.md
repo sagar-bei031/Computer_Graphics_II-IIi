@@ -22,7 +22,7 @@ mkdir build # make build directory
 cd build # Enter into build
 cmake .. # Compile cmake files
 make -j8 # build project
-make run # run prokect
+make run # run project
 ```
 Using Makefile (bash or powershell):
 ```bash
