@@ -21,11 +21,21 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 
 find_package(SDL2 REQUIRED)
 
-# Include directories
 include_directories(inc)
 
-# Add subdirectory for source files
-add_subdirectory(src)
+add_executable(graphics
+	src/DDA.cpp
+	src/BLA.cpp
+	src/MCA.cpp
+	src/MEA.cpp
+	src/vector2.cpp
+	src/rectangle.cpp
+	src/LineClipper.cpp
+	example.cpp
+)
+
+target_include_directories(graphics PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+target_link_libraries(${PROJECT_NAME} SDL2::SDL2)
 
 # Install executable
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)

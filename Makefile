@@ -1,3 +1,5 @@
+# Tested on linux only (STM32CubeMX style)
+
 # Target
 TARGET = graphics
 
@@ -15,7 +17,14 @@ C_SOURCES =
 
 # CXX Sources
 CXX_SOURCES = \
-src/main.cpp
+src/DDA.cpp \
+src/BLA.cpp \
+src/MCA.cpp \
+src/MEA.cpp \
+src/vector2.cpp  \
+src/rectangle.cpp \
+src/LineClipper.cpp \
+example.cpp
 
 # C Includes
 C_INC = \

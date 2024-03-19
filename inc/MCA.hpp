@@ -7,5 +7,5 @@ namespace MCA
 {
     void drawCircle(SDL_Renderer *renderer, int xc, int yc, int r);
 
-    inline void renderCircle(SDL_Renderer *renderer, int xc, int yc, int x, int y);
+    void renderCircle(SDL_Renderer *renderer, int xc, int yc, int x, int y);
 };

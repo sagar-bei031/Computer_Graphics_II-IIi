@@ -7,5 +7,5 @@ namespace MEA
 {
     void drawEllipse(SDL_Renderer *renderer, int xc, int yc, int rx, int ry);
 
-    inline void renderEllipse(SDL_Renderer *renderer, int xc, int yc, int x, int y);
+    void renderEllipse(SDL_Renderer *renderer, int xc, int yc, int x, int y);
 };

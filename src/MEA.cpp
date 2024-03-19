@@ -14,49 +14,47 @@ void MEA::drawEllipse(SDL_Renderer *renderer, int xc, int yc, int rx, int ry)
     // Draw starting point
     renderEllipse(renderer, xc, yc, x, y);
 
-    // Draw the first region
+    // For first region
     p = round(ry2 - rx2 * ry + 0.25f * rx2);
+
     while (px < py)
     {
         ++x;
         px += 2 * ry2;
+        p += ry2 + px;
 
-        if (p < 0)
-        {
-            p += ry2 + px;
-        }
-        else
+        if (p > 0)
         {
             --y;
             py -= 2 * rx2;
-            p += ry2 + px - py;
+            p -= py;
         }
+
 
         renderEllipse(renderer, xc, yc, x, y);
     }
 
-    // Draw the second region
-    p = round(ry2 * (x + 0.5) * (x + 0.5) + rx2 * (y - 1) * (y - 1) - rx2 * ry2);
+    // For second region
+    p = round(ry2 * (x + 0.5f) * (x + 0.5f) + rx2 * (y - 1) * (y - 1) - rx2 * ry2);
+
     while (y >= 0)
     {
         --y;
         py -= 2 * rx2;
-        if (p > 0)
-        {
-            p += rx2 - py;
-        }
-        else
+        p += rx2 - py;
+
+        if (p < 0)
         {
             ++x;
             px += 2 * ry2;
-            p += rx2 - py + px;
+            p += px;
         }
 
         renderEllipse(renderer, xc, yc, x, y);
     }
 }
 
-inline void MEA::renderEllipse(SDL_Renderer *renderer, int xc, int yc, int x, int y)
+void MEA::renderEllipse(SDL_Renderer *renderer, int xc, int yc, int x, int y)
 {
     SDL_RenderDrawPoint(renderer, xc + x, yc + y);
     SDL_RenderDrawPoint(renderer, xc + x, yc - y);

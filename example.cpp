@@ -1,9 +1,9 @@
-#include "DDA.hpp"
 #include "BLA.hpp"
+#include "DDA.hpp"
+#include "LineClipper.hpp"
 #include "MCA.hpp"
 #include "MEA.hpp"
 #include "rectangle.hpp"
-#include "LineClipper.hpp"
 #include <SDL2/SDL.h>
 
 const int SCREEN_WIDTH = 960;
@@ -13,7 +13,8 @@ int main()
 {
     SDL_Init(SDL_INIT_VIDEO);
 
-    SDL_Window *window = SDL_CreateWindow("Computer Graphics Lab", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+    SDL_Window *window = SDL_CreateWindow("Computer Graphics Lab", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+                                          SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
     SDL_Event event;
@@ -45,9 +46,9 @@ int main()
 
         // Draw Line 2
         SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-        BLA::drawLine(renderer, 800, 720, 960, 0); /* BLA is more efficient and accurate. */
+        BLA::drawLine(renderer, 800, 720, 960, 0);
 
-        // Draw Circle
+        // // Draw Circle
         SDL_SetRenderDrawColor(renderer, 0, 0, 255, 255);
         MCA::drawCircle(renderer, 700, 400, 200);
 
@@ -75,12 +76,12 @@ int main()
         SDL_SetRenderDrawColor(renderer, 0, 200, 100, 255);
         rec.render(renderer);
 
-        int x0 = 0, y0 = 0, x1 = 960, y1 = 720;
+        int x1 = 0, y1 = 0, x2 = 960, y2 = 720;
         int x_min = 100, x_max = 860, y_min = 100, y_max = 620;
 
         // Draw original line to be clipped
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        SDL_RenderDrawLine(renderer, x0, y0, x1, y1);
+        BLA::drawLine(renderer, x1, y1, x2, y2);
 
         // Drawing Clipping Box
         SDL_SetRenderDrawColor(renderer, 100, 255, 100, 255);
@@ -88,10 +89,10 @@ int main()
         SDL_RenderDrawRect(renderer, &rr);
 
         // Clip and Draw Line
-        if (clipLine(x0, y0, x1, y1, x_min, x_max, y_min, y_max))
+        if (LBA::clipLine(x1, y1, x2, y2, x_min, x_max, y_min, y_max))
         {
             SDL_SetRenderDrawColor(renderer, 0, 255, 0, 255);
-            SDL_RenderDrawLine(renderer, x0, y0, x1, y1);
+            BLA::drawLine(renderer, x1, y1, x2, y2);
         }
 
         // Pull back buffer on to front buffer

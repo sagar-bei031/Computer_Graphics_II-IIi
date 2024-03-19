@@ -11,22 +11,19 @@ void MCA::drawCircle(SDL_Renderer *renderer, int xc, int yc, int r)
     while (x < y)
     {
         ++x;
+        p += 2 * x + 1;
 
-        if (p < 0)
-        {
-            p += 2 * x + 1;
-        }
-        else
+        if (p > 0)
         {
             --y;
-            p += 2 * (x - y) + 1;
+            p -= 2 * y;
         }
 
         renderCircle(renderer, xc, yc, x, y);
     }
 }
 
-inline void MCA::renderCircle(SDL_Renderer *renderer, int xc, int yc, int x, int y)
+void MCA::renderCircle(SDL_Renderer *renderer, int xc, int yc, int x, int y)
 {
     SDL_RenderDrawPoint(renderer, xc + x, yc + y); /* First I */
     SDL_RenderDrawPoint(renderer, xc + y, yc + x); /* First II */
