@@ -23,7 +23,7 @@ find_package(SDL2 REQUIRED)
 
 include_directories(inc)
 
-add_executable(lab
+add_executable(${PROJECT_NAME}
 	src/DDA.cpp
 	src/BLA.cpp
 	src/MCA.cpp
@@ -34,7 +34,7 @@ add_executable(lab
 	lab.cpp
 )
 
-target_include_directories(graphics PRIVATE ${CMAKE_CURRENT_LIST_DIR})
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_LIST_DIR})
 target_link_libraries(${PROJECT_NAME} SDL2::SDL2)
 
 # Install executable
